@@ -116,3 +116,83 @@ bool existsFile(char* filename) {
 		return true;
 	}
 }
+
+
+void modificarBalance(Balance *b) {
+
+	char opcion;
+	float cantidad;
+	do {
+		do {
+
+			printf("\n Que quieres modificar del balance?");
+			printf("\n 1. Activo no corriente");
+			printf("\n 2. Stock");
+			printf("\n 3. Disponible");
+			printf("\n 4. Realizable");
+			printf("\n 5. Patrimonio neto");
+			printf("\n 6. Pasivo corriente");
+			printf("\n 7. Pasivo no corriente");
+			printf("\n 0. SALIR");
+
+
+			printf(" \n\n Introduzca una opcion del 1-7:");
+
+			fflush(stdin);
+			scanf("%s", &opcion);
+			switch (opcion) {
+			case '1':
+				printf("Introducir cantidad\n");
+				scanf("%f", &cantidad);
+				b->importeANC = cantidad;
+				break;
+			case '2':
+				printf("Introducir cantidad\n");
+				scanf("%f", &cantidad);
+				b->importeStock = cantidad;
+				break;
+			case '3':
+				printf("Introducir cantidad\n");
+				scanf("%f", &cantidad);
+				b->importeDisponible = cantidad;
+				break;
+			case '4':
+				printf("Introducir cantidad\n");
+				scanf("%f", &cantidad);
+				b->importeRealizable = cantidad;
+				break;
+			case '5':
+				printf("Introducir cantidad\n");
+				scanf("%f", &cantidad);
+				b->importePN = cantidad;
+				break;
+			case '6':
+				printf("Introducir cantidad\n");
+				scanf("%f", &cantidad);
+				b->importePC = cantidad;
+				break;
+			case '7':
+				printf("Introducir cantidad\n");
+				scanf("%f", &cantidad);
+				b->importePNC = cantidad;
+				break;
+			case '0':
+				printf("Agur");
+				break;
+			default:
+				printf("Esa opcion no esta disponible\n");
+				break;
+			}
+		} while (opcion != '0');
+
+		if (!cuadra(b->importeStock, b->importeRealizable, b->importeDisponible,
+				b->importeANC, b->importePC, b->importePNC, b->importePN)) {
+			printf(
+					"El balance no cuadra. Por favor, introduce otra vez los datos:\n");
+		}
+
+	} while (!cuadra(b->importeStock, b->importeRealizable, b->importeDisponible,
+			b->importeANC, b->importePC, b->importePNC, b->importePN));
+
+	escribir_ficBin(*b);
+}

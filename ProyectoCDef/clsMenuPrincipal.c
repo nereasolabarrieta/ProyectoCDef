@@ -123,7 +123,7 @@ void menu() {
 			break;
 		case '9': imprimirTextil();
 			break;
-		case '*': introducirBalance();
+		case '*':  modificar_Balance();
 					break;
 		case '0':
 			free(clientes);
@@ -316,4 +316,8 @@ void imprimirTextil()
 					}
 				}
 }
-
+void modificar_Balance()
+{
+	printf("El balance que estoy modificando tiene el stock: %f \n",nuestro_balance->importeStock);
+	modificarBalance(nuestro_balance);
+}

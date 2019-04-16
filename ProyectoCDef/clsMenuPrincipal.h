@@ -19,4 +19,5 @@ void ContabilizarVenta();
 void imprimirComplementos();
 void imprimirBalance ();
 void imprimirTextil();
+void modificar_Balance();
 #endif /* CLSMENUPRINCIPAL_H_ */
