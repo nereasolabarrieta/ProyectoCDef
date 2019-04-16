@@ -151,7 +151,7 @@ void introducirC() {
 	char dni_vacio[] = "0000000000";
 	for (int i = 0; i < NUM_CLIENTES; i++) {
 		if (strcmp((clientes + i)->dni, dni_vacio) == 0) {
-			printf("entra %i \n", i + 1);
+
 			introducirCliente(clientes + i);
 			escribirFic_bin_clientes(clientes, i + 1);
 

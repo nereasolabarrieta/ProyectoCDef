@@ -171,7 +171,7 @@ void modificarBalance(Balance *b) {
 				b->importePNC = cantidad;
 				break;
 			case '0':
-				printf("Agur");
+
 				break;
 			default:
 				printf("Esa opcion no esta disponible\n");
