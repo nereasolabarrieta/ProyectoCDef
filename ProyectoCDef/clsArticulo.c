@@ -10,8 +10,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "clsArticulo.h"
-#include "clsBalance.h"
-#include "clsCliente.h"
+
 #define TAMANYO 20
 int num_complementos = 0;
 

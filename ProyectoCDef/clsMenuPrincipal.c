@@ -46,8 +46,6 @@ void menuPrincipal() {
 		((complementos + i)->articulo).codigo = dni_vacio;
 	}
 
-// si existe clientes.txt meterlos en el array
-// si existe provedorees.txt meterlos en el array
 
 	if (!existsFile("Balance.dat")) {
 		introducirBalance();
@@ -229,14 +227,14 @@ void imprimirBalance() {
 	printf("Activo corriente: %f\n",
 			nuestro_balance->importeDisponible + nuestro_balance->importeStock
 					+ nuestro_balance->importeRealizable);
-	printf("1. Stock: %f\n", nuestro_balance->importeStock);
-	printf("2. Realizable: %f\n", nuestro_balance->importeRealizable);
-	printf("3. Disponible: %f\n", nuestro_balance->importeDisponible);
+	printf("Stock: %f\n", nuestro_balance->importeStock);
+	printf("Realizable: %f\n", nuestro_balance->importeRealizable);
+	printf("Disponible: %f\n", nuestro_balance->importeDisponible);
 
 	printf("--------------------------\n");
 
 	printf("TOTAL PASIVO Y PATRIMONIO NETO: %f\n", totalP);
-	printf("PAtrimonio neto: %f\n", nuestro_balance->importePN);
+	printf("Patrimonio neto: %f\n", nuestro_balance->importePN);
 	printf("Pasivo no corriente: %f\n", nuestro_balance->importePNC);
 	printf("Pasivo corriente: %f\n", nuestro_balance->importePC);
 }
@@ -313,7 +311,5 @@ void imprimirTextil() {
 	}
 }
 void modificar_Balance() {
-	printf("El balance que estoy modificando tiene el stock: %f \n",
-			nuestro_balance->importeStock);
 	modificarBalance(nuestro_balance);
 }

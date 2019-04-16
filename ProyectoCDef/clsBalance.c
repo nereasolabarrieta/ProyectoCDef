@@ -100,7 +100,7 @@ void leerFichero(Balance * balance) {
 	fread(&(balance->importePN), sizeof(float), 1, f);
 	fread(&(balance->importePNC), sizeof(float), 1, f);
 	fread(&(balance->importePC), sizeof(float), 1, f);
-
+	fclose(f);
 }
 bool existsFile(char* filename) {
 	FILE* f = NULL;
@@ -111,12 +111,13 @@ bool existsFile(char* filename) {
 		fclose(f);
 		return true;
 	}
+	fclose(f);
 }
 
 void modificarBalance(Balance *b) {
 
 	char opcion;
-	float cantidad;
+	float cantidadS,cantidadR,cantidadD, cantidadANC, cantidadPNC, cantidadPN, cantidadPC;
 	do {
 		do {
 
@@ -137,48 +138,46 @@ void modificarBalance(Balance *b) {
 			switch (opcion) {
 			case '1':
 				printf("Introducir cantidad\n");
-				scanf("%f", &cantidad);
-				b->importeANC = cantidad;
+				scanf("%f", &cantidadANC);
+				b->importeANC = cantidadANC;
 				break;
 			case '2':
 				printf("Introducir cantidad\n");
-				scanf("%f", &cantidad);
-				b->importeStock = cantidad;
+				scanf("%f", &cantidadS);
+				b->importeStock = cantidadS;
 				break;
 			case '3':
 				printf("Introducir cantidad\n");
-				scanf("%f", &cantidad);
-				b->importeDisponible = cantidad;
+				scanf("%f", &cantidadD);
+				b->importeDisponible = cantidadD;
 				break;
 			case '4':
 				printf("Introducir cantidad\n");
-				scanf("%f", &cantidad);
-				b->importeRealizable = cantidad;
+				scanf("%f", &cantidadR);
+				b->importeRealizable = cantidadR;
 				break;
 			case '5':
 				printf("Introducir cantidad\n");
-				scanf("%f", &cantidad);
-				b->importePN = cantidad;
+				scanf("%f", &cantidadPN);
+				b->importePN = cantidadPN;
 				break;
 			case '6':
 				printf("Introducir cantidad\n");
-				scanf("%f", &cantidad);
-				b->importePC = cantidad;
+				scanf("%f", &cantidadPC);
+				b->importePC = cantidadPC;
 				break;
 			case '7':
 				printf("Introducir cantidad\n");
-				scanf("%f", &cantidad);
-				b->importePNC = cantidad;
+				scanf("%f", &cantidadPNC);
+				b->importePNC = cantidadPNC;
 				break;
 			case '0':
-
 				break;
 			default:
 				printf("Esa opcion no esta disponible\n");
 				break;
 			}
 		} while (opcion != '0');
-
 		if (!cuadra(b->importeStock, b->importeRealizable, b->importeDisponible,
 				b->importeANC, b->importePC, b->importePNC, b->importePN)) {
 			printf(
