@@ -11,13 +11,13 @@ void introducirP();
 void introducirBalance();
 void menu();
 void menuPrincipal();
-void imprimirClientes ();
+void imprimirClientes();
 void introducirC();
-void imprimirProv ();
+void imprimirProv();
 void compra();
 void ContabilizarVenta();
 void imprimirComplementos();
-void imprimirBalance ();
+void imprimirBalance();
 void imprimirTextil();
 void modificar_Balance();
 #endif /* CLSMENUPRINCIPAL_H_ */

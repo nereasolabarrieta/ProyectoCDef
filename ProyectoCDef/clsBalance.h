@@ -9,8 +9,7 @@
 #ifndef CLSBALANCE_H_
 #define CLSBALANCE_H_
 
-typedef struct
-{
+typedef struct {
 	float importeStock;
 	float importeRealizable;
 	float importeDisponible;
@@ -18,13 +17,15 @@ typedef struct
 	float importePC;
 	float importePNC;
 	float importePN;
-}Balance;
+} Balance;
 
 void introducir();
 bool existsFile(char*);
 void leerFichero(Balance*);
 void escribir_ficBin(Balance);
-bool cuadra(float importeStock, float importeRealizable,float importeDisponible, float importeANC,float importePC,float importePNC,float importePN);
+bool cuadra(float importeStock, float importeRealizable,
+		float importeDisponible, float importeANC, float importePC,
+		float importePNC, float importePN);
 void modificarBalance(Balance *b);
 
 #endif /* CLSBALANCE_H_ */

@@ -8,15 +8,14 @@
 #ifndef CLSPROVEEDOR_H_
 #define CLSPROVEEDOR_H_
 
-typedef struct
-{
+typedef struct {
 	char *NIF;
 	char *nom;
-}Proveedor;
+} Proveedor;
 
 void introducirProveedor(Proveedor *nuevoProveedor);
 void ImprimirProv(Proveedor prov);
 void LeerFic_bin_proveedores(Proveedor *p);
-void escribirFic_bin_proveedores(Proveedor* p,int num_proveedores);
+void escribirFic_bin_proveedores(Proveedor* p, int num_proveedores);
 
 #endif /* CLSPROVEEDOR_H_ */

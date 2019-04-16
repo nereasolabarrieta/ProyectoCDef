@@ -59,7 +59,6 @@ void introducir(Balance * nuevoBalance) {
 	nuevoBalance->importeRealizable = importeRealizable;
 	nuevoBalance->importeStock = importeStock;
 
-
 	escribir_ficBin(*(nuevoBalance));
 
 }
@@ -76,34 +75,31 @@ bool cuadra(float importeStock, float importeRealizable,
 		return false;
 }
 
-
-void escribir_ficBin (Balance balance)
-{
+void escribir_ficBin(Balance balance) {
 	FILE *f;
-	f = fopen ( "Balance.dat", "wb" );
-	fwrite(&(balance.importeANC),sizeof(float),1,f);
-	fwrite(&(balance.importeStock),sizeof(float),1,f);
-	fwrite(&(balance.importeRealizable),sizeof(float),1,f);
-	fwrite(&(balance.importeDisponible),sizeof(float),1,f);
-	fwrite(&(balance.importePN),sizeof(float),1,f);
-	fwrite(&(balance.importePNC),sizeof(float),1,f);
-	fwrite(&(balance.importePC),sizeof(float),1,f);
+	f = fopen("Balance.dat", "wb");
+	fwrite(&(balance.importeANC), sizeof(float), 1, f);
+	fwrite(&(balance.importeStock), sizeof(float), 1, f);
+	fwrite(&(balance.importeRealizable), sizeof(float), 1, f);
+	fwrite(&(balance.importeDisponible), sizeof(float), 1, f);
+	fwrite(&(balance.importePN), sizeof(float), 1, f);
+	fwrite(&(balance.importePNC), sizeof(float), 1, f);
+	fwrite(&(balance.importePC), sizeof(float), 1, f);
 
 	fclose(f);
 
 }
 
-void leerFichero(Balance * balance)
-{
+void leerFichero(Balance * balance) {
 	FILE *f;
-	f=fopen("Balance.dat","rb");
-	fread(&(balance->importeANC), sizeof(float),1,f);
-	fread(&(balance->importeStock), sizeof(float),1,f);
-	fread(&(balance->importeRealizable), sizeof(float),1,f);
-	fread(&(balance->importeDisponible), sizeof(float),1,f);
-	fread(&(balance->importePN), sizeof(float),1,f);
-	fread(&(balance->importePNC), sizeof(float),1,f);
-	fread(&(balance->importePC), sizeof(float),1,f);
+	f = fopen("Balance.dat", "rb");
+	fread(&(balance->importeANC), sizeof(float), 1, f);
+	fread(&(balance->importeStock), sizeof(float), 1, f);
+	fread(&(balance->importeRealizable), sizeof(float), 1, f);
+	fread(&(balance->importeDisponible), sizeof(float), 1, f);
+	fread(&(balance->importePN), sizeof(float), 1, f);
+	fread(&(balance->importePNC), sizeof(float), 1, f);
+	fread(&(balance->importePC), sizeof(float), 1, f);
 
 }
 bool existsFile(char* filename) {
@@ -116,7 +112,6 @@ bool existsFile(char* filename) {
 		return true;
 	}
 }
-
 
 void modificarBalance(Balance *b) {
 
@@ -134,7 +129,6 @@ void modificarBalance(Balance *b) {
 			printf("\n 6. Pasivo corriente");
 			printf("\n 7. Pasivo no corriente");
 			printf("\n 0. SALIR");
-
 
 			printf(" \n\n Introduzca una opcion del 1-7:");
 
@@ -191,8 +185,9 @@ void modificarBalance(Balance *b) {
 					"El balance no cuadra. Por favor, introduce otra vez los datos:\n");
 		}
 
-	} while (!cuadra(b->importeStock, b->importeRealizable, b->importeDisponible,
-			b->importeANC, b->importePC, b->importePNC, b->importePN));
+	} while (!cuadra(b->importeStock, b->importeRealizable,
+			b->importeDisponible, b->importeANC, b->importePC, b->importePNC,
+			b->importePN));
 
 	escribir_ficBin(*b);
 }

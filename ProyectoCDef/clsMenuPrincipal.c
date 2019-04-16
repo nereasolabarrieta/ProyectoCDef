@@ -23,8 +23,8 @@ int main(void) {
 	clientes = (Cliente *) malloc(NUM_CLIENTES * sizeof(Cliente));
 	proveedores = (Proveedor *) malloc(NUM_PROV * sizeof(Proveedor));
 	nuestro_balance = (Balance *) malloc(sizeof(Balance));
-	textiles= (Textil*)malloc(NUM_ARTIC*sizeof(Textil));
-	complementos= (Complemento*)malloc(NUM_ARTIC*sizeof(Complemento));
+	textiles = (Textil*) malloc(NUM_ARTIC * sizeof(Textil));
+	complementos = (Complemento*) malloc(NUM_ARTIC * sizeof(Complemento));
 	menuPrincipal();
 	return 0;
 
@@ -33,7 +33,7 @@ void menuPrincipal() {
 	char dni_vacio[] = "0000000000";
 
 	for (int i = 0; i < NUM_CLIENTES; i++) {
-	(clientes + i)->dni = dni_vacio;
+		(clientes + i)->dni = dni_vacio;
 
 	}
 
@@ -42,39 +42,30 @@ void menuPrincipal() {
 	}
 
 	for (int i = 0; i < NUM_ARTIC; i++) {
-			((textiles + i)->articulo).codigo= dni_vacio;
-			((complementos + i)->articulo).codigo= dni_vacio;
-		}
-
-
+		((textiles + i)->articulo).codigo = dni_vacio;
+		((complementos + i)->articulo).codigo = dni_vacio;
+	}
 
 // si existe clientes.txt meterlos en el array
 // si existe provedorees.txt meterlos en el array
 
-	if (!existsFile("Balance.dat"))
-	{
+	if (!existsFile("Balance.dat")) {
 		introducirBalance();
 		menu();
-	}
-	else
-	{
-		if (existsFile("Clientes.dat"))
-		{
+	} else {
+		if (existsFile("Clientes.dat")) {
 			LeerFic_bin_clientes(clientes);
 		}
-		if (existsFile("Proveedores.dat"))
-		{
+		if (existsFile("Proveedores.dat")) {
 			LeerFic_bin_proveedores(proveedores);
 		}
-		if (existsFile("Complementos.dat"))
-		{
+		if (existsFile("Complementos.dat")) {
 			LeerFic_bin_complementos(complementos);
 		}
-		if (existsFile("Textil.dat"))
-		{
+		if (existsFile("Textil.dat")) {
 			LeerFic_bin_textil(textiles);
 		}
-			leerFichero(nuestro_balance);
+		leerFichero(nuestro_balance);
 
 		menu();
 	}
@@ -109,33 +100,41 @@ void menu() {
 		case '2':
 			introducirP();
 			break;
-		case '3':ContabilizarVenta();
+		case '3':
+			ContabilizarVenta();
 			break;
-		case '4': compra();
+		case '4':
+			compra();
 			break;
-		case '5':imprimirBalance();
+		case '5':
+			imprimirBalance();
 			break;
-		case '6': imprimirClientes();
+		case '6':
+			imprimirClientes();
 			break;
-		case '7': imprimirProv();
+		case '7':
+			imprimirProv();
 			break;
-		case '8': imprimirComplementos();
+		case '8':
+			imprimirComplementos();
 			break;
-		case '9': imprimirTextil();
+		case '9':
+			imprimirTextil();
 			break;
-		case '*':  modificar_Balance();
-					break;
+		case '*':
+			modificar_Balance();
+			break;
 		case '0':
 			free(clientes);
 			clientes = NULL;
 			free(nuestro_balance);
-			nuestro_balance =NULL;
+			nuestro_balance = NULL;
 			free(textiles);
-			textiles =NULL;
+			textiles = NULL;
 			free(complementos);
-			complementos =NULL;
+			complementos = NULL;
 			free(proveedores);
-			proveedores =NULL;
+			proveedores = NULL;
 			printf("Agur");
 			break;
 		default:
@@ -154,7 +153,7 @@ void introducirC() {
 		if (strcmp((clientes + i)->dni, dni_vacio) == 0) {
 			printf("entra %i \n", i + 1);
 			introducirCliente(clientes + i);
-			escribirFic_bin_clientes(clientes,i+1);
+			escribirFic_bin_clientes(clientes, i + 1);
 
 			break;
 		}
@@ -166,14 +165,12 @@ void introducirP() {
 	for (int i = 0; i < NUM_PROV; i++) {
 		if (strcmp((proveedores + i)->NIF, dni_vacio) == 0) {
 			introducirProveedor(proveedores + i);
-			escribirFic_bin_proveedores(proveedores,i+1);
+			escribirFic_bin_proveedores(proveedores, i + 1);
 			break;
 		}
 	}
 
 }
-
-
 
 void compra() {
 	char opcion;
@@ -187,10 +184,10 @@ void compra() {
 		scanf("%s", &opcion);
 		switch (opcion) {
 		case '1':
-			anyadirComplemento(complementos,NUM_ARTIC,nuestro_balance);
+			anyadirComplemento(complementos, NUM_ARTIC, nuestro_balance);
 			break;
 		case '2':
-			anyadirTextil(textiles,NUM_ARTIC,nuestro_balance);
+			anyadirTextil(textiles, NUM_ARTIC, nuestro_balance);
 			break;
 		case '0':
 			printf("Agur");
@@ -198,15 +195,14 @@ void compra() {
 		default:
 			printf("Esa opcion no existe.");
 		}
-	} while (!(opcion == '1' || opcion == '2' || opcion=='0') );
+	} while (!(opcion == '1' || opcion == '2' || opcion == '0'));
 
 }
 
 void imprimirClientes() {
 	char dni_vacio[] = "0000000000";
 	for (int i = 0; i < NUM_CLIENTES; i++) {
-		if (strcmp((clientes + i)->dni, dni_vacio) != 0)
-		{
+		if (strcmp((clientes + i)->dni, dni_vacio) != 0) {
 			imprimirCliente(*(clientes + i));
 		}
 	}
@@ -222,102 +218,102 @@ void imprimirProv() {
 	}
 }
 
-void imprimirBalance ()
-{
-	float totalA= nuestro_balance->importeANC+nuestro_balance->importeDisponible+nuestro_balance->importeStock+nuestro_balance->importeRealizable;
-	float totalP= nuestro_balance->importePC+nuestro_balance->importePN+nuestro_balance->importePNC;
-	printf( "TOTAL ACTIVO: %f eu\n",totalA);
-		printf( "Activo no corriente: %f\n",nuestro_balance->importeANC);
-		printf( "Activo corriente: %f\n",nuestro_balance->importeDisponible+nuestro_balance->importeStock+nuestro_balance->importeRealizable);
-		printf( "1. Stock: %f\n",nuestro_balance->importeStock);
-		printf( "2. Realizable: %f\n",nuestro_balance->importeRealizable);
-		printf( "3. Disponible: %f\n",nuestro_balance->importeDisponible);
+void imprimirBalance() {
+	float totalA = nuestro_balance->importeANC
+			+ nuestro_balance->importeDisponible + nuestro_balance->importeStock
+			+ nuestro_balance->importeRealizable;
+	float totalP = nuestro_balance->importePC + nuestro_balance->importePN
+			+ nuestro_balance->importePNC;
+	printf("TOTAL ACTIVO: %f eu\n", totalA);
+	printf("Activo no corriente: %f\n", nuestro_balance->importeANC);
+	printf("Activo corriente: %f\n",
+			nuestro_balance->importeDisponible + nuestro_balance->importeStock
+					+ nuestro_balance->importeRealizable);
+	printf("1. Stock: %f\n", nuestro_balance->importeStock);
+	printf("2. Realizable: %f\n", nuestro_balance->importeRealizable);
+	printf("3. Disponible: %f\n", nuestro_balance->importeDisponible);
 
-		printf( "--------------------------\n");
+	printf("--------------------------\n");
 
-
-		printf( "TOTAL PASIVO Y PATRIMONIO NETO: %f\n",totalP);
-		printf( "PAtrimonio neto: %f\n",nuestro_balance->importePN);
-		printf("Pasivo no corriente: %f\n",nuestro_balance->importePNC);
-		printf( "Pasivo corriente: %f\n",nuestro_balance->importePC);
+	printf("TOTAL PASIVO Y PATRIMONIO NETO: %f\n", totalP);
+	printf("PAtrimonio neto: %f\n", nuestro_balance->importePN);
+	printf("Pasivo no corriente: %f\n", nuestro_balance->importePNC);
+	printf("Pasivo corriente: %f\n", nuestro_balance->importePC);
 }
 
-void ContabilizarVenta(){
-	bool existe=false;
+void ContabilizarVenta() {
+	bool existe = false;
 	char *dni = malloc(10 * sizeof(char));
-	do
-	{
-	printf("Introduce el DNI del cliente que ha realizado la compra:\n");
+	do {
+		printf("Introduce el DNI del cliente que ha realizado la compra:\n");
 
-	fflush(stdin);
-	scanf("%s", dni);
+		fflush(stdin);
+		scanf("%s", dni);
 
-
-	for (int i = 0; i < NUM_CLIENTES; i++) {
-		if (strcmp((clientes + i)->dni, dni) == 0) {
-			printf("El cliente correspondiente a este DNI es el siguiente: \n");
-			imprimirCliente(*(clientes + i));
-			existe=true;
-			char opcion;
+		for (int i = 0; i < NUM_CLIENTES; i++) {
+			if (strcmp((clientes + i)->dni, dni) == 0) {
+				printf(
+						"El cliente correspondiente a este DNI es el siguiente: \n");
+				imprimirCliente(*(clientes + i));
+				existe = true;
+				char opcion;
 				do {
 
-				printf("Que tipo de venta desea contabilizar?\n");
-				printf("1-Complemento\n");
-				printf("2-Textil\n");
-				printf("0-Salir\n");
-				fflush(stdin);
-				scanf("%s", &opcion);
-				switch (opcion) {
-				case '1':
-					VentaComplemento(complementos,NUM_ARTIC, nuestro_balance,(clientes + i));
-					escribirFic_bin_clientes(clientes,i+1);
-					break;
-				case '2':
-					VentaTextil(textiles,NUM_ARTIC, nuestro_balance,(clientes + i));
-					escribirFic_bin_clientes(clientes,i+1);
-					break;
-				case '0':
-					printf("Salir");
-					break;
-				default:
-					printf("Esa opcion no existe.");
-				}
-			} while  (!(opcion == '1' || opcion == '2' || opcion == '0') );
-			break;
+					printf("Que tipo de venta desea contabilizar?\n");
+					printf("1-Complemento\n");
+					printf("2-Textil\n");
+					printf("0-Salir\n");
+					fflush(stdin);
+					scanf("%s", &opcion);
+					switch (opcion) {
+					case '1':
+						VentaComplemento(complementos, NUM_ARTIC,
+								nuestro_balance, (clientes + i));
+						escribirFic_bin_clientes(clientes, i + 1);
+						break;
+					case '2':
+						VentaTextil(textiles, NUM_ARTIC, nuestro_balance,
+								(clientes + i));
+						escribirFic_bin_clientes(clientes, i + 1);
+						break;
+					case '0':
+						printf("Salir");
+						break;
+					default:
+						printf("Esa opcion no existe.");
+					}
+				} while (!(opcion == '1' || opcion == '2' || opcion == '0'));
+				break;
+			}
+		}
+		if (existe == false) {
+			printf("No existe ningun cliente con ese DNI\n");
+		}
+
+	} while (existe == false);
+
+}
+void imprimirComplementos() {
+	char dni_vacio[] = "0000000000";
+	for (int i = 0; i < NUM_ARTIC; i++) {
+
+		if (strcmp((complementos + i)->articulo.codigo, dni_vacio) != 0) {
+
+			Imprimir_complemento(*(complementos + i));
 		}
 	}
-	if(existe==false)
-	{
-		printf("No existe ningun cliente con ese DNI\n");
+}
+void imprimirTextil() {
+	char dni_vacio[] = "0000000000";
+	for (int i = 0; i < NUM_ARTIC; i++) {
+		;
+		if (strcmp((textiles + i)->articulo.codigo, dni_vacio) != 0) {
+			Imprimir_textil(*(textiles + i));
+		}
 	}
-
-	}while(existe==false);
-
-
 }
-void imprimirComplementos()
-{
-	char dni_vacio[] = "0000000000";
-			for (int i = 0; i < NUM_ARTIC; i++) {
-
-				if (strcmp((complementos + i)->articulo.codigo, dni_vacio) != 0) {
-
-					Imprimir_complemento(*(complementos + i));
-				}
-			}
-}
-void imprimirTextil()
-{
-	char dni_vacio[] = "0000000000";
-				for (int i = 0; i < NUM_ARTIC; i++) {
-					;
-					if (strcmp((textiles + i)->articulo.codigo, dni_vacio) != 0) {
-						Imprimir_textil(*(textiles + i));
-					}
-				}
-}
-void modificar_Balance()
-{
-	printf("El balance que estoy modificando tiene el stock: %f \n",nuestro_balance->importeStock);
+void modificar_Balance() {
+	printf("El balance que estoy modificando tiene el stock: %f \n",
+			nuestro_balance->importeStock);
 	modificarBalance(nuestro_balance);
 }
